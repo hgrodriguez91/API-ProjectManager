@@ -6,7 +6,7 @@ import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 @Component
 @Mapper
@@ -33,12 +33,12 @@ public interface clienteMapper {
    @Select("Select * from clientes where nombre =#{name}")
    Cliente getClientByName(String name );
 
-   @Insert("Insert into clientes values (#{cliente.codigo},#{cliente.nombre},#{cliente.direccion})")
-    int createClient(Cliente cliente);
+   @Insert("Insert into clientes (codigo, nombre, direccion) values (#{codigo},#{nombre},#{direccion})")
+    int createClient(String codigo, String nombre, String direccion);
 
    @Delete("Delete * from clientes where id={id}")
     int deleteClient(Integer id);
 
-   @Update("Update clientes set codigo= #{cliente.codigo}, nombre =#{cliente.nombre}, direccion = #{cliente.direccion}")
-    int updateClient(Cliente cliente);
+   @Update("Update clientes set codigo= #{codigo}, nombre =#{nombre}, direccion = #{direccion}")
+    int updateClient(String codigo, String nombre, String direccion);
 }

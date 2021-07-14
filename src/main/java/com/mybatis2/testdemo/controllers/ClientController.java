@@ -26,15 +26,15 @@ public class ClientController {
 
     @PostMapping()
     public String addClient(@RequestBody Cliente cliente ){
-        int result = clienteMapper.createClient(cliente);
+        int result = clienteMapper.createClient(cliente.getCodigo(),cliente.getNombre(), cliente.getDireccion());
         if(result>0){
             return "CLIENT CREATED ";
         }
         return "CLIENT CREATE FAIL";
     }
-    @PutMapping
+    @PutMapping("/{id}")
     public String updateClient(@RequestBody Cliente cliente){
-        int result = clienteMapper.updateClient(cliente);
+        int result = clienteMapper.updateClient(cliente.getCodigo() , cliente.getNombre(), cliente.getDireccion());
         if(result>0){
             return "CLIENT UPDATED ";
         }
